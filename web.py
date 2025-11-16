@@ -22,16 +22,15 @@ st.write(
 years = sorted(df["Year"].unique())
 towns = sorted(df["Town"].unique())
 
-# ============================================
+
 # 1. Feature viz: Percent Affordable by town for a chosen year
-# ============================================
+
 st.header("1. Percent Affordable by Town")
 
 year_selected = st.selectbox("Select a year", years, key="year_bar")
 
 df_year = df[df["Year"] == year_selected].copy()
 
-# Optional: allow user to limit to top N towns by Percent Affordable
 top_n = st.slider("Show top N towns by Percent Affordable", 5, 50, 20)
 
 df_year_sorted = df_year.sort_values("Percent Affordable", ascending=False).head(top_n)
@@ -53,9 +52,9 @@ bar_chart = (
 
 st.altair_chart(bar_chart, use_container_width=True)
 
-# ============================================
+
 # 2. Feature viz: Scatter of Census Units vs Percent Affordable
-# ============================================
+
 st.header("2. Census Units vs Percent Affordable")
 
 # Widgets for filtering by year range
@@ -108,9 +107,9 @@ st.altair_chart(scatter_chart, use_container_width=True)
 
 st.write("Number of points:", len(df_range))
 
-# ============================================
+
 # 3. Feature viz: Time series of Percent Affordable for one town
-# ============================================
+
 st.header("3. Time Series for a Selected Town")
 
 town_selected = st.selectbox("Select a town", towns, key="town_timeseries")
